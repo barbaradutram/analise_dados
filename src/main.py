@@ -2,13 +2,13 @@ import csv
 import json
 from models.pessoa import Pessoa
 from models.endereco import CEP, Celular
-from services.gender_service import GenderService  # se estiver usando
+from services.gender_service import GenderService  
 
 def main():
     caminho = r'C:\Users\barba\OneDrive\Documentos\Next\BARBARA\next\analise_dados\data\lista_clientes.csv'
     caminho_saida = r'C:\Users\barba\OneDrive\Documentos\Next\BARBARA\next\analise_dados\data\usuarios_formatados.json'
 
-    gender_service = None  # Se quiser ativar, troque por: GenderService('genderize')
+    gender_service = None  #roda o gender_service
 
     usuarios = []
 
@@ -17,8 +17,7 @@ def main():
         for i, linha in enumerate(leitor, start=1):
             pessoa = Pessoa(linha)
 
-            # Inferir gênero (se quiser ativar)
-            # pessoa.genero = gender_service.inferir_genero(pessoa.nomePrincipal)
+            # executa genero
 
             cep = CEP(pessoa.cep)
             celular = Celular(pessoa.celular, cep)

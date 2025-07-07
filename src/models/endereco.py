@@ -2,6 +2,7 @@ import csv
 import re
 import requests
 
+ #inicializa uma instância da classe CEP com os dados fornecidos no endereço.
 class CEP:
     def __init__(self, cep_raw):
         self.cep = self._formatar_cep(cep_raw)
@@ -19,6 +20,8 @@ class CEP:
     def _validar_cep(self):
         return len(self.cep) == 8 and self.cep.isdigit()
 
+
+ #textes de cep
     def _consultar_via_cep(self):
         url = f"https://viacep.com.br/ws/{self.cep}/json/"
         try:
@@ -111,10 +114,10 @@ class Celular:
         return self.numero_formatado if self.numero_formatado else 'Número inválido'
 
 
-# Caminho do CSV
+#exemplo de aplicação de uso
 CAMINHO_CSV = r'C:\Users\barba\OneDrive\Documentos\Next\BARBARA\next\analise_dados\data\lista_clientes.csv'
 
-# Execução principal
+
 if __name__ == "__main__":
     with open(CAMINHO_CSV, newline='', encoding='utf-8') as arquivo:
         leitor = csv.DictReader(arquivo)

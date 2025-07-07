@@ -1,7 +1,7 @@
 import json
 from collections import Counter
 
-# Função auxiliar para mapear estados para regiões
+#Mapear estados para regiões
 def obter_regiao(estado):
     regioes = {
         'Norte': {'AC', 'AP', 'AM', 'PA', 'RO', 'RR', 'TO'},
@@ -15,7 +15,7 @@ def obter_regiao(estado):
             return regiao
     return 'Desconhecida'
 
-# Carregar arquivo JSON
+#CarregarJSON
 caminho_json = r'C:\Users\barba\OneDrive\Documentos\Next\BARBARA\next\analise_dados\data\usuarios_formatados.json'
 
 with open(caminho_json, 'r', encoding='utf-8') as arquivo:
@@ -23,7 +23,7 @@ with open(caminho_json, 'r', encoding='utf-8') as arquivo:
 
 usuarios = dados['users']
 
-# Inicializar contadores
+#contadores
 total_usuarios = len(usuarios)
 genero_contador = Counter()
 regiao_contador = Counter()
@@ -32,7 +32,7 @@ telefone_invalidos = 0
 interesse_contador = Counter()
 interesse_por_genero = {}
 
-# Processar cada usuário
+#Processar usuário
 for usuario in usuarios:
     genero = usuario['genero'].lower()
     estado = usuario['estado']
@@ -53,11 +53,11 @@ for usuario in usuarios:
     if 'Telefone ausente ou inválido' in observacoes:
         telefone_invalidos += 1
 
-# Função para calcular percentual
+#calcular percentual
 def percentual(parte, total):
     return round((parte / total) * 100, 2) if total > 0 else 0
 
-# Relatório no console
+# Relatório
 print("\n===== RELATÓRIO DE ANÁLISE DOS DADOS =====\n")
 
 print("🔹 Distribuição de Gênero:")

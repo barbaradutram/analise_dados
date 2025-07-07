@@ -1,12 +1,14 @@
 import csv
 from models.cpf import CPF  
 
+
+ #inicializa uma instância da classe Pessoa com os dados fornecidos.
 class Pessoa:
     def __init__(self, info: dict):
         self.nomeCompleto = info.get('NomeCompleto', '').strip()
         self.email = info.get('Email', '')
         self.celular = info.get('Celular', '')
-        self.cpf_str = info.get('CPF', '')  # guardo a string do CPF
+        self.cpf_str = info.get('CPF', '') 
         self.cep = info.get('CEP', '')
         self.interesse = info.get('Interesse', '')
         self.nomePrincipal = ''
@@ -17,9 +19,11 @@ class Pessoa:
         self.observacoes = []
 
         self.tratar_nomes()
-        self.cpf = CPF(self.cpf_str)  # instancia CPF
+        self.cpf = CPF(self.cpf_str)  #instancia CPF
         self.validar_campos()
 
+
+#Formata os nomes e indentificar
     def tratar_nomes(self) -> str:
         preposicoes = {"de", "da", "do", "dos", "das", "em", "no", "na", "nos", "nas", "e"}
         palavras = self.nomeCompleto.lower().split()
@@ -54,6 +58,7 @@ class Pessoa:
 
         return self.nomeCompleto
 
+#Formata e reduz o nome original
     def nome_reduzido(self) -> str:
         if self.segundoNome:
             if self.preposicaoEntre:
@@ -64,7 +69,7 @@ class Pessoa:
             return self.nomePrincipal
 
     def validar_campos(self):
-        # usa validação da classe CPF
+        #validar da classe CPF
         if not self.cpf.valido:
             self.observacoes.append(self.cpf.observacao)
 
